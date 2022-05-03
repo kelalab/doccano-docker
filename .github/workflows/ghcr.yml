@@ -3,7 +3,7 @@ on:
     branches:
       - main
 env:
-  ORGANIZAION: "kelalab"
+  ORGANIZATION: "kelalab"
   DOCKERFILE: "Dockerfile"
   IMAGENAME: "doccano"
 jobs:
