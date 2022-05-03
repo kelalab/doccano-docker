@@ -1,0 +1,33 @@
+version: "3"
+services:
+  # gui requires to
+  gui:
+    image: doccano-gui
+    ports:
+      - 4000:4000
+    environment:
+      DOCCANO_URL: http://doccano:8000
+      ADMIN_USER: admin
+      ADMIN_PASS: pass
+      USERS: user-salakala,user2-eikeksi?
+  doccano:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    environment:
+      POSTGRESQL_USER: doccano
+      POSTGRESQL_PASSWORD: password
+      POSTGRESQL_DATABASE: doccano
+      POSTGRESQL_HOST: db
+      ADMIN_USER: admin
+      ADMIN_PASS: pass
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: doccano
